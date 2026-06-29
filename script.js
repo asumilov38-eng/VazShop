@@ -211,15 +211,7 @@ function renderContacts(containerId, contacts) {
 
     const items = [];
 
-    if (phone) {
-        const cleanPhone = phone.replace(/[^\d+]/g, '+7 904 958-42-82');
-        items.push({
-            label: ' Позвонить',
-            value: phone,
-            href: `tel:${cleanPhone}`,
-            local: true
-        });
-    }
+    
     if (vk) {
         const vkHref = vk.startsWith('http') ? vk : `https://vk.com/theme_67`;
         items.push({
