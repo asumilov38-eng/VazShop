@@ -204,10 +204,9 @@ function renderContacts(containerId, contacts) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    const phone = contacts.phone ? String(contacts.phone).trim() : '';
-    const tg = contacts.telegram ? String(contacts.telegram).trim().replace(/^@+/, '') : '';
+    
     const vk = contacts.vk ? String(contacts.vk).trim() : '';
-    const max = contacts.max ? String(contacts.max).trim() : '';
+    
 
     const items = [];
 
