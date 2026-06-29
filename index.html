@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#141414">
+    <title>ВЯЗШОП</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="logo">ВЯЗШОП</div>
+        <button class="info-btn" id="infoBtn" aria-label="Информация">!</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему">
+            <div class="slider">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </div>
+        </button>
+    </header>
+
+    <!-- ПЛАВАЮЩИЙ ПОИСК -->
+    <div class="search-wrapper" id="searchWrapper">
+        <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Поиск..." autocomplete="off">
+        </div>
+    </div>
+
+    <!-- ТОВАРЫ -->
+    <main class="main">
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+            Ничего не найдено
+        </div>
+    </main>
+
+    <!-- ОТСТУП ПОД НИЖНЕЕ МЕНЮ -->
+    <div style="height: 100px;"></div>
+
+    <!-- НИЖНЕЕ МЕНЮ -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-tab="home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span>Главная</span>
+        </button>
+        <button class="nav-btn" data-tab="place">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+            </svg>
+            <span>Разместить</span>
+        </button>
+    </nav>
+
+    <!-- МОДАЛКА ТОВАРА -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-modal">
+            <button class="modal-close" data-close>&times;</button>
+            <div class="banner-wrap">
+                <img id="modalBanner" class="banner" alt="">
+            </div>
+            <h2 id="modalTitle"></h2>
+            <div class="price-row">
+                <span class="price" id="modalPrice"></span>
+                <span class="old-price" id="modalOldPrice"></span>
+            </div>
+            <p class="description" id="modalDescription"></p>
+            <div class="gallery" id="modalGallery"></div>
+            <button class="buy-btn" id="buyBtn">Купить</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА КОНТАКТОВ ПРОДАВЦА -->
+    <div class="modal" id="contactsModal">
+        <div class="modal-content contacts-modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Контакты продавца</h2>
+            <div class="contacts-list" id="sellerContacts"></div>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА РАЗМЕЩЕНИЯ -->
+    <div class="modal" id="placeModal">
+        <div class="modal-content place-modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Разместить объявление</h2>
+            <div class="place-offer">
+                <div class="place-price">
+                    <span class="place-free">Бесплатно!</span>
+                    <span class="place-old">123 ₽</span>
+                    <span class="place-per-day">в день</span>
+                </div>
+                <p class="place-text">Разместите своё объявление на нашей площадке совершенно бесплатно. Без скрытых платежей и комиссий.</p>
+            </div>
+
+            <div class="promo-block">
+                <div class="promo-head">
+                    <span class="promo-title">🚀 Продвижение в ТОП</span>
+                    <span class="promo-price">50 ₽</span>
+                </div>
+                <p class="promo-text">Ваше объявление будет показано самым первым. Если кто-то после вас купит продвижение — его объявление встанет перед вашим, а ваше сдвинется ниже, но всё равно останется в ТОП-ленте.</p>
+                <button class="buy-btn" id="promoBtn">Купить продвижение</button>
+            </div>
+
+            <h3>Связаться с владельцем площадки</h3>
+            <div class="contacts-list" id="ownerContacts"></div>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА ПРОДВИЖЕНИЯ -->
+    <div class="modal" id="promoModal">
+        <div class="modal-content small-modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Продвижение в ТОП — 50 ₽</h2>
+            <p>Чтобы купить продвижение, свяжитесь с владельцем площадки любым удобным способом. После оплаты ваше объявление будет показано самым первым в ленте.</p>
+            <p class="muted">Если кто-то купит продвижение после вас — его объявление встанет перед вашим, а ваше останется в ТОП-ленте, просто ниже.</p>
+            <div class="contacts-list" id="promoContacts"></div>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА ИНФОРМАЦИИ -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content info-modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>О площадке</h2>
+            <p><strong style="color:var(--text)">ВЯЗШОП</strong> — доска объявлений города <strong style="color:var(--text)">Вязники</strong> и всех ближлежащих деревень и посёлков.</p>
+
+            <div class="warning-block">
+                <strong>⚠️ Важная информация</strong>
+                Мы предоставляем только площадку для размещения объявлений. Администрация сайта <u>не несёт ответственности</u> за:
+            </div>
+
+            <ul>
+                <li>Качество, состояние и соответствие товаров описанию</li>
+                <li>Способы и сроки доставки товаров</li>
+                <li>Содержание переписки и диалогов между продавцами и покупателями</li>
+                <li>Действия пользователей площадки</li>
+                <li>Возможное мошенничество со стороны участников</li>
+            </ul>
+
+            <div class="warning-block">
+                <strong>🚫 Запрещено к размещению</strong>
+                На площадке запрещено размещать объявления о продаже:
+            </div>
+
+            <ul>
+                <li>Наркотических средств и психотропных веществ</li>
+                <li>Алкогольной и табачной продукции</li>
+                <li>Оружия и взрывчатых веществ</li>
+                <li>Товаров категории 18+</li>
+                <li>Иных товаров, запрещённых законодательством РФ</li>
+            </ul>
+
+            <p style="margin-top:16px; font-size:13px;">Используя площадку, вы соглашаетесь с данными правилами. Будьте внимательны при сделках.</p>
+        </div>
+    </div>
+
+    <!-- СКРИПТЫ -->
+    <script src="config.js"></script>
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
