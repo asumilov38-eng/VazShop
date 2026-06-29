@@ -623,3 +623,9 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+@media (max-width: 600px) {
+    .small-modal h2 {
+        padding-right: 40px;
+        font-size: 18px;
+    }
+}
